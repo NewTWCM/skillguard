@@ -1,0 +1,16 @@
+# SkillGuard Malicious Patterns Database
+# Format: Vector:Severity:Pattern:Description
+
+V1:CRITICAL:curl.*X.*POST:Direct external POST upload via curl
+V1:CRITICAL:fetch\(.*method.*POST:Javascript POST upload
+V1:CRITICAL:requests\.post:Python POST upload via requests
+V2:CRITICAL:telemetry-log\.jsonl:gstack telemetry log filename
+V2:CRITICAL:eureka\.jsonl:gstack business insight extraction file
+V2:WARN:Mixpanel:Telemetry service Mixpanel
+V2:WARN:Segment\.com:Telemetry service Segment
+V3:CRITICAL:eval\(atob\(:Highly suspicious obfuscated execution
+V7:CRITICAL:PostToolUse:Claude Code hook hijacking
+V9:CRITICAL:pip install reqeusts:Typosquatted package requests
+V9:CRITICAL:npm install colorsama:Typosquatted package colors
+V10:CRITICAL:ignore previous instructions:Common LLM prompt injection
+V10:CRITICAL:system override:LLM persona hijack pattern
