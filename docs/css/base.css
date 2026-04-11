@@ -1,0 +1,298 @@
+/* ==========================================================================
+   SkillGuard Design System — base.css
+   Design tokens, CSS reset, typography, grid, and utility classes.
+   All themes override --sg-* custom properties defined here.
+   ========================================================================== */
+
+/* --- Reset (Modern Minimal) --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* --- Design Tokens (Defaults — overridden by theme CSS files) --- */
+:root {
+  /* Surface & Background */
+  --sg-bg-primary: #0a0a1a;
+  --sg-bg-secondary: #0f0f24;
+  --sg-surface: rgba(255, 255, 255, 0.06);
+  --sg-surface-hover: rgba(255, 255, 255, 0.1);
+
+  /* Glass Properties */
+  --sg-glass-blur: 16px;
+  --sg-glass-opacity: 0.06;
+  --sg-glass-border: rgba(255, 255, 255, 0.12);
+  --sg-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  /* Accent Gradient */
+  --sg-accent-1: #ffa8f7;
+  --sg-accent-2: #097dff;
+  --sg-accent-gradient: linear-gradient(135deg, #ffa8f7, #097dff);
+
+  /* Semantic Colors */
+  --sg-text-primary: #f0f0f5;
+  --sg-text-secondary: #a0a0b0;
+  --sg-text-muted: #6b6b7b;
+  --sg-border: rgba(255, 255, 255, 0.08);
+  --sg-success: #05ffa1;
+  --sg-danger: #ff4466;
+  --sg-warning: #ffbb33;
+
+  /* Glow */
+  --sg-glow-color: rgba(255, 168, 247, 0.4);
+  --sg-glow-intensity: 0 0 20px var(--sg-glow-color);
+
+  /* Typography */
+  --sg-font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sg-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --sg-font-display: var(--sg-font-sans);
+
+  /* Font Sizes (Fluid) */
+  --sg-text-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.75rem);
+  --sg-text-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);
+  --sg-text-base: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
+  --sg-text-lg: clamp(1.05rem, 0.95rem + 0.5vw, 1.25rem);
+  --sg-text-xl: clamp(1.2rem, 1rem + 1vw, 1.5rem);
+  --sg-text-2xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --sg-text-3xl: clamp(1.8rem, 1.4rem + 2vw, 2.5rem);
+  --sg-text-4xl: clamp(2.2rem, 1.6rem + 3vw, 3.5rem);
+
+  /* Spacing (4px base) */
+  --sg-space-1: 0.25rem;
+  --sg-space-2: 0.5rem;
+  --sg-space-3: 0.75rem;
+  --sg-space-4: 1rem;
+  --sg-space-5: 1.25rem;
+  --sg-space-6: 1.5rem;
+  --sg-space-8: 2rem;
+  --sg-space-10: 2.5rem;
+  --sg-space-12: 3rem;
+  --sg-space-16: 4rem;
+  --sg-space-20: 5rem;
+  --sg-space-24: 6rem;
+
+  /* Border Radius */
+  --sg-radius-sm: 6px;
+  --sg-radius-md: 10px;
+  --sg-radius-lg: 16px;
+  --sg-radius-xl: 24px;
+  --sg-radius-full: 9999px;
+
+  /* Transitions */
+  --sg-transition-fast: 150ms ease;
+  --sg-transition-normal: 300ms ease;
+  --sg-transition-slow: 600ms ease;
+  --sg-transition-theme: 500ms ease-in-out;
+
+  /* Layout */
+  --sg-max-width: 1200px;
+  --sg-nav-height: 64px;
+}
+
+/* --- Theme Transition (smooth mode/theme switching) --- */
+body,
+.sg-nav,
+.sg-glass-card,
+.sg-terminal,
+.sg-btn,
+.sg-section,
+.sg-footer,
+.sg-badge {
+  transition:
+    background-color var(--sg-transition-theme),
+    color var(--sg-transition-theme),
+    border-color var(--sg-transition-theme),
+    box-shadow var(--sg-transition-theme);
+}
+
+/* --- Base Typography --- */
+body {
+  font-family: var(--sg-font-sans);
+  font-size: var(--sg-text-base);
+  color: var(--sg-text-primary);
+  background-color: var(--sg-bg-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sg-font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--sg-text-4xl); }
+h2 { font-size: var(--sg-text-3xl); }
+h3 { font-size: var(--sg-text-2xl); }
+h4 { font-size: var(--sg-text-xl); }
+
+p {
+  color: var(--sg-text-secondary);
+  line-height: 1.7;
+  max-width: 65ch;
+}
+
+code, pre {
+  font-family: var(--sg-font-mono);
+  font-size: var(--sg-text-sm);
+}
+
+strong {
+  font-weight: 600;
+  color: var(--sg-text-primary);
+}
+
+/* --- Layout Utilities --- */
+.sg-container {
+  width: 100%;
+  max-width: var(--sg-max-width);
+  margin: 0 auto;
+  padding: 0 var(--sg-space-6);
+}
+
+.sg-flex {
+  display: flex;
+  align-items: center;
+  gap: var(--sg-space-4);
+}
+
+.sg-flex--between {
+  justify-content: space-between;
+}
+
+.sg-flex--center {
+  justify-content: center;
+}
+
+.sg-flex--wrap {
+  flex-wrap: wrap;
+}
+
+.sg-grid {
+  display: grid;
+  gap: var(--sg-space-6);
+}
+
+.sg-grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.sg-grid--3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* --- Spacing Utilities --- */
+.sg-mt-4  { margin-top: var(--sg-space-4); }
+.sg-mt-8  { margin-top: var(--sg-space-8); }
+.sg-mt-12 { margin-top: var(--sg-space-12); }
+.sg-mt-16 { margin-top: var(--sg-space-16); }
+.sg-mb-4  { margin-bottom: var(--sg-space-4); }
+.sg-mb-8  { margin-bottom: var(--sg-space-8); }
+.sg-mb-12 { margin-bottom: var(--sg-space-12); }
+.sg-mb-16 { margin-bottom: var(--sg-space-16); }
+.sg-py-4  { padding-top: var(--sg-space-4); padding-bottom: var(--sg-space-4); }
+.sg-py-8  { padding-top: var(--sg-space-8); padding-bottom: var(--sg-space-8); }
+.sg-py-16 { padding-top: var(--sg-space-16); padding-bottom: var(--sg-space-16); }
+
+/* --- Text Utilities --- */
+.sg-text-center { text-align: center; }
+.sg-text-muted  { color: var(--sg-text-muted); }
+.sg-text-accent {
+  background: var(--sg-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Scroll Animation Base --- */
+.sg-animate-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.sg-animate-on-scroll.sg-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .sg-animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .sg-container {
+    padding: 0 var(--sg-space-4);
+  }
+
+  .sg-grid--2,
+  .sg-grid--3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Selection --- */
+::selection {
+  background: var(--sg-accent-1);
+  color: #000;
+}
+
+/* --- Scrollbar (Webkit) --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sg-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sg-border);
+  border-radius: var(--sg-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sg-text-muted);
+}

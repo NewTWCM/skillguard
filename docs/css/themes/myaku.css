@@ -1,0 +1,147 @@
+/* ==========================================================================
+   MYAKU (脈 / Pulse) — Neural Vein Theme
+   Golden organic traces, branching data-flow patterns on dark backgrounds
+   ========================================================================== */
+
+/* --- Dark Mode --- */
+html[data-theme="myaku"],
+html[data-theme="myaku"][data-mode="dark"] {
+  --sg-bg-primary: #0a0a0a;
+  --sg-bg-secondary: #101008;
+  --sg-surface: rgba(201, 168, 76, 0.04);
+  --sg-surface-hover: rgba(201, 168, 76, 0.08);
+
+  --sg-glass-blur: 12px;
+  --sg-glass-border: rgba(201, 168, 76, 0.1);
+  --sg-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  --sg-accent-1: #c9a84c;
+  --sg-accent-2: #8b6914;
+  --sg-accent-gradient: linear-gradient(135deg, #d4b85a, #c9a84c, #8b6914);
+
+  --sg-text-primary: #e8e0d0;
+  --sg-text-secondary: #a09880;
+  --sg-text-muted: #686050;
+  --sg-border: rgba(201, 168, 76, 0.06);
+
+  --sg-glow-color: rgba(201, 168, 76, 0.25);
+  --sg-glow-intensity: 0 0 12px rgba(201, 168, 76, 0.2), 0 0 30px rgba(201, 168, 76, 0.06);
+
+  --sg-success: #7acc66;
+  --sg-danger: #e05555;
+  --sg-warning: #d4b85a;
+}
+
+/* --- Light Mode --- */
+html[data-theme="myaku"][data-mode="light"] {
+  --sg-bg-primary: #faf8f0;
+  --sg-bg-secondary: #f2efe5;
+  --sg-surface: rgba(255, 255, 255, 0.7);
+  --sg-surface-hover: rgba(255, 255, 255, 0.85);
+
+  --sg-glass-blur: 10px;
+  --sg-glass-border: rgba(139, 105, 20, 0.1);
+  --sg-glass-shadow: 0 4px 20px rgba(139, 105, 20, 0.06);
+
+  --sg-accent-1: #8b6914;
+  --sg-accent-2: #5a4400;
+  --sg-accent-gradient: linear-gradient(135deg, #a07a20, #8b6914, #5a4400);
+
+  --sg-text-primary: #1a1810;
+  --sg-text-secondary: #605840;
+  --sg-text-muted: #908868;
+  --sg-border: rgba(0, 0, 0, 0.06);
+
+  --sg-glow-color: rgba(139, 105, 20, 0.12);
+  --sg-glow-intensity: 0 0 8px rgba(139, 105, 20, 0.08);
+
+  --sg-success: #059669;
+  --sg-danger: #dc2626;
+  --sg-warning: #a07a20;
+}
+
+/* --- MYAKU: Nav --- */
+html[data-theme="myaku"] .sg-nav {
+  background: rgba(10, 10, 10, 0.8);
+}
+
+html[data-theme="myaku"][data-mode="light"] .sg-nav {
+  background: rgba(250, 248, 240, 0.8);
+}
+
+/* --- MYAKU: Card with thin golden borders --- */
+html[data-theme="myaku"] .sg-glass-card {
+  border-radius: var(--sg-radius-md);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* --- MYAKU: Gradient border uses gold tones --- */
+html[data-theme="myaku"] .sg-glass-card--glow::before {
+  background: linear-gradient(var(--sg-angle, 135deg), #d4b85a, #8b6914, #c9a84c);
+  animation: sg-rotate-gradient 10s linear infinite;
+}
+
+/* --- MYAKU: Hover glow is golden --- */
+html[data-theme="myaku"] .sg-glass-card:hover {
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.2), 0 0 25px rgba(201, 168, 76, 0.06), var(--sg-glass-shadow);
+}
+
+/* --- MYAKU: Hero background (CSS fallback — golden nebula) --- */
+html[data-theme="myaku"] .sg-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 40% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 40%, rgba(139, 105, 20, 0.04) 0%, transparent 40%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+html[data-theme="myaku"][data-mode="light"] .sg-hero::before {
+  background:
+    radial-gradient(ellipse at 40% 50%, rgba(160, 122, 32, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 40%, rgba(90, 68, 0, 0.03) 0%, transparent 40%);
+}
+
+/* --- MYAKU: Layer diagram uses gold connector --- */
+html[data-theme="myaku"] .sg-layers::before {
+  background: linear-gradient(to bottom, #d4b85a, #8b6914);
+}
+
+/* --- MYAKU: Terminal --- */
+html[data-theme="myaku"] .sg-terminal {
+  background: rgba(5, 5, 5, 0.85);
+  border-color: rgba(201, 168, 76, 0.08);
+}
+
+/* --- MYAKU: Badge accent --- */
+html[data-theme="myaku"] .sg-badge--blue {
+  border-color: rgba(201, 168, 76, 0.25);
+  color: #c9a84c;
+}
+
+/* --- MYAKU: Scrollbar --- */
+html[data-theme="myaku"] ::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.15);
+}
+
+html[data-theme="myaku"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 76, 0.3);
+}
+
+/* --- MYAKU: Selection --- */
+html[data-theme="myaku"] ::selection {
+  background: #c9a84c;
+  color: #0a0a0a;
+}
+
+/* --- MYAKU: Theme switcher --- */
+html[data-theme="myaku"] .sg-theme-switcher {
+  background: rgba(16, 16, 8, 0.95);
+}
+
+html[data-theme="myaku"][data-mode="light"] .sg-theme-switcher {
+  background: rgba(250, 248, 240, 0.95);
+}

@@ -1,0 +1,161 @@
+/* ==========================================================================
+   KAGAMI (鏡 / Mirror) — Chrome Metallic Theme
+   Liquid mirror reflections, silver-to-violet palette
+   ========================================================================== */
+
+/* --- Dark Mode --- */
+html[data-theme="kagami"],
+html[data-theme="kagami"][data-mode="dark"] {
+  --sg-bg-primary: #0d0d12;
+  --sg-bg-secondary: #111118;
+  --sg-surface: rgba(192, 192, 220, 0.06);
+  --sg-surface-hover: rgba(192, 192, 220, 0.1);
+
+  --sg-glass-blur: 14px;
+  --sg-glass-border: rgba(192, 192, 220, 0.12);
+  --sg-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  --sg-accent-1: #c0c0e0;
+  --sg-accent-2: #8a7acc;
+  --sg-accent-gradient: linear-gradient(135deg, #e0e0f0, #c0c0e0, #8a7acc);
+
+  --sg-text-primary: #e8e8f0;
+  --sg-text-secondary: #9898a8;
+  --sg-text-muted: #606070;
+  --sg-border: rgba(192, 192, 220, 0.08);
+
+  --sg-glow-color: rgba(192, 192, 220, 0.2);
+  --sg-glow-intensity: 0 0 16px rgba(192, 192, 220, 0.15), 0 0 40px rgba(138, 122, 204, 0.06);
+
+  --sg-success: #59e6a8;
+  --sg-danger: #ff5577;
+  --sg-warning: #ffcc44;
+}
+
+/* --- Light Mode --- */
+html[data-theme="kagami"][data-mode="light"] {
+  --sg-bg-primary: #eaeaf0;
+  --sg-bg-secondary: #e0e0e8;
+  --sg-surface: rgba(255, 255, 255, 0.75);
+  --sg-surface-hover: rgba(255, 255, 255, 0.9);
+
+  --sg-glass-blur: 12px;
+  --sg-glass-border: rgba(100, 100, 130, 0.12);
+  --sg-glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+
+  --sg-accent-1: #666690;
+  --sg-accent-2: #5a4a9e;
+  --sg-accent-gradient: linear-gradient(135deg, #888898, #666690, #5a4a9e);
+
+  --sg-text-primary: #18181f;
+  --sg-text-secondary: #50505e;
+  --sg-text-muted: #8888a0;
+  --sg-border: rgba(0, 0, 0, 0.08);
+
+  --sg-glow-color: rgba(90, 74, 158, 0.12);
+  --sg-glow-intensity: 0 0 12px rgba(90, 74, 158, 0.08);
+
+  --sg-success: #059669;
+  --sg-danger: #dc2626;
+  --sg-warning: #d97706;
+}
+
+/* --- KAGAMI: Nav --- */
+html[data-theme="kagami"] .sg-nav {
+  background: rgba(13, 13, 18, 0.75);
+}
+
+html[data-theme="kagami"][data-mode="light"] .sg-nav {
+  background: rgba(234, 234, 240, 0.75);
+}
+
+/* --- KAGAMI: Chrome shimmer on glass cards --- */
+html[data-theme="kagami"] .sg-glass-card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(220, 220, 240, 0.08) 0%,
+      rgba(160, 160, 180, 0.03) 40%,
+      rgba(220, 220, 240, 0.06) 60%,
+      rgba(140, 140, 160, 0.02) 100%
+    );
+}
+
+html[data-theme="kagami"] .sg-glass-card:hover {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(220, 220, 240, 0.12) 0%,
+      rgba(160, 160, 180, 0.05) 40%,
+      rgba(220, 220, 240, 0.10) 60%,
+      rgba(140, 140, 160, 0.04) 100%
+    );
+}
+
+/* --- KAGAMI: Shimmer sweep on hover --- */
+html[data-theme="kagami"] .sg-glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+html[data-theme="kagami"] .sg-glass-card:hover::after {
+  left: 120%;
+}
+
+/* --- KAGAMI: Gradient border uses silver tones --- */
+html[data-theme="kagami"] .sg-glass-card--glow::before {
+  background: linear-gradient(var(--sg-angle, 135deg), #e0e0f0, #8a7acc, #c0c0e0);
+  animation: sg-rotate-gradient 10s linear infinite;
+}
+
+/* --- KAGAMI: Hero background (CSS fallback) --- */
+html[data-theme="kagami"] .sg-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(192, 192, 220, 0.08) 0%, transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- KAGAMI: Terminal --- */
+html[data-theme="kagami"] .sg-terminal {
+  background: rgba(8, 8, 14, 0.8);
+  border-color: rgba(192, 192, 220, 0.1);
+}
+
+/* --- KAGAMI: Scrollbar --- */
+html[data-theme="kagami"] ::-webkit-scrollbar-thumb {
+  background: rgba(192, 192, 220, 0.15);
+}
+
+html[data-theme="kagami"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(192, 192, 220, 0.3);
+}
+
+/* --- KAGAMI: Selection --- */
+html[data-theme="kagami"] ::selection {
+  background: #c0c0e0;
+  color: #0d0d12;
+}
+
+/* --- KAGAMI: Theme switcher --- */
+html[data-theme="kagami"] .sg-theme-switcher {
+  background: rgba(17, 17, 24, 0.95);
+}
+
+html[data-theme="kagami"][data-mode="light"] .sg-theme-switcher {
+  background: rgba(234, 234, 240, 0.95);
+}

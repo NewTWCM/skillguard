@@ -1,0 +1,179 @@
+/* ==========================================================================
+   SUMI (墨 / Ink) — Minimal Monochrome Theme
+   High-contrast, ink-wash, clean typography, single red accent
+   Zero glass blur, zero glow — minimalism is the statement
+   ========================================================================== */
+
+/* --- Dark Mode --- */
+html[data-theme="sumi"],
+html[data-theme="sumi"][data-mode="dark"] {
+  --sg-bg-primary: #000000;
+  --sg-bg-secondary: #080808;
+  --sg-surface: rgba(255, 255, 255, 0.04);
+  --sg-surface-hover: rgba(255, 255, 255, 0.07);
+
+  --sg-glass-blur: 0px;
+  --sg-glass-border: rgba(255, 255, 255, 0.1);
+  --sg-glass-shadow: none;
+
+  --sg-accent-1: #d4002a;
+  --sg-accent-2: #d4002a;
+  --sg-accent-gradient: linear-gradient(135deg, #d4002a, #ff1a4a);
+
+  --sg-text-primary: #f0f0f0;
+  --sg-text-secondary: #999999;
+  --sg-text-muted: #555555;
+  --sg-border: rgba(255, 255, 255, 0.1);
+
+  --sg-glow-color: transparent;
+  --sg-glow-intensity: none;
+
+  --sg-success: #40c040;
+  --sg-danger: #d4002a;
+  --sg-warning: #cc9900;
+}
+
+/* --- Light Mode --- */
+html[data-theme="sumi"][data-mode="light"] {
+  --sg-bg-primary: #ffffff;
+  --sg-bg-secondary: #f5f5f5;
+  --sg-surface: rgba(0, 0, 0, 0.03);
+  --sg-surface-hover: rgba(0, 0, 0, 0.05);
+
+  --sg-glass-blur: 0px;
+  --sg-glass-border: rgba(0, 0, 0, 0.1);
+  --sg-glass-shadow: none;
+
+  --sg-accent-1: #b8001e;
+  --sg-accent-2: #b8001e;
+  --sg-accent-gradient: linear-gradient(135deg, #b8001e, #d4002a);
+
+  --sg-text-primary: #111111;
+  --sg-text-secondary: #666666;
+  --sg-text-muted: #aaaaaa;
+  --sg-border: rgba(0, 0, 0, 0.1);
+
+  --sg-glow-color: transparent;
+  --sg-glow-intensity: none;
+
+  --sg-success: #059669;
+  --sg-danger: #b8001e;
+  --sg-warning: #996600;
+}
+
+/* --- SUMI: Nav is crisp, no blur --- */
+html[data-theme="sumi"] .sg-nav {
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-theme="sumi"][data-mode="light"] .sg-nav {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* --- SUMI: Cards have no glass effect --- */
+html[data-theme="sumi"] .sg-glass-card {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: var(--sg-radius-sm);
+  box-shadow: none;
+}
+
+html[data-theme="sumi"] .sg-glass-card:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--sg-accent-1);
+}
+
+/* --- SUMI: Glow cards have clean red border instead --- */
+html[data-theme="sumi"] .sg-glass-card--glow::before {
+  background: var(--sg-accent-1);
+  animation: none;
+}
+
+/* --- SUMI: No hero background animation --- */
+html[data-theme="sumi"] .sg-hero::before,
+html[data-theme="sumi"] .sg-hero::after {
+  display: none;
+}
+
+html[data-theme="sumi"] .sg-hero__canvas {
+  display: none;
+}
+
+/* --- SUMI: Layer diagram connector is solid red --- */
+html[data-theme="sumi"] .sg-layers::before {
+  background: var(--sg-accent-1);
+  opacity: 0.4;
+  animation: none;
+}
+
+/* --- SUMI: Badges are stark --- */
+html[data-theme="sumi"] .sg-badge {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: transparent;
+}
+
+/* --- SUMI: Terminal is high contrast --- */
+html[data-theme="sumi"] .sg-terminal {
+  background: #0a0a0a;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="sumi"][data-mode="light"] .sg-terminal {
+  background: #111111;
+}
+
+/* --- SUMI: Buttons are flat --- */
+html[data-theme="sumi"] .sg-btn--primary {
+  box-shadow: none;
+}
+
+html[data-theme="sumi"] .sg-btn--primary:hover {
+  box-shadow: none;
+  opacity: 0.85;
+  transform: none;
+}
+
+html[data-theme="sumi"] .sg-btn--ghost:hover {
+  border-color: var(--sg-accent-1);
+  background: transparent;
+}
+
+/* --- SUMI: Scrollbar --- */
+html[data-theme="sumi"] ::-webkit-scrollbar-thumb {
+  background: rgba(212, 0, 42, 0.2);
+}
+
+html[data-theme="sumi"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 0, 42, 0.4);
+}
+
+/* --- SUMI: Selection --- */
+html[data-theme="sumi"] ::selection {
+  background: #d4002a;
+  color: #ffffff;
+}
+
+/* --- SUMI: Theme switcher --- */
+html[data-theme="sumi"] .sg-theme-switcher {
+  background: rgba(0, 0, 0, 0.96);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-theme="sumi"][data-mode="light"] .sg-theme-switcher {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+/* --- SUMI: Typography emphasis --- */
+html[data-theme="sumi"] .sg-hero__title {
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+html[data-theme="sumi"] .sg-section__title {
+  letter-spacing: -0.02em;
+}

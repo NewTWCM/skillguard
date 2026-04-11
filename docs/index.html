@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="kaze" data-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillGuard — Three-Layer Runtime Defense for AI Agent Plugins</title>
+  <meta name="description" content="SkillGuard v2.3: Lightweight, three-layer runtime defense protecting AI agent environments (Claude Code, Cursor, MCP) from malicious plugins.">
+  <meta name="author" content="CM Fang (NewTWCM)">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SkillGuard — AI Agent Plugin Security">
+  <meta property="og:description" content="Three-layer runtime defense against malicious AI agent plugins. Honeypots, behavioral scanning, cryptographic integrity.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/animations.css">
+  <link id="theme-css" rel="stylesheet" href="./css/themes/kaze.css">
+
+  <!-- Anti-flash: Apply saved theme/mode before paint -->
+  <script>
+    (function() {
+      var t = localStorage.getItem('sg-theme') || 'kaze';
+      var m = localStorage.getItem('sg-mode') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-mode', m);
+    })();
+  </script>
+</head>
+<body>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="sg-nav" role="navigation" aria-label="Main navigation">
+    <div class="sg-nav__inner">
+      <a href="#hero" class="sg-nav__logo" aria-label="SkillGuard Home">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>SkillGuard</span>
+      </a>
+
+      <div class="sg-nav__links" id="nav-links">
+        <a href="#defense" class="sg-nav__link" data-i18n="nav.defense">Defense</a>
+        <a href="#threats" class="sg-nav__link" data-i18n="nav.threats">Threats</a>
+        <a href="#install" class="sg-nav__link" data-i18n="nav.install">Install</a>
+        <a href="#research" class="sg-nav__link" data-i18n="nav.research">Research</a>
+        <a href="#support" class="sg-nav__link" data-i18n="nav.support">Support</a>
+      </div>
+
+      <div class="sg-nav__controls">
+        <button class="sg-nav__btn" id="theme-toggle-btn" aria-label="Switch theme" title="Switch theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <span data-i18n="nav.theme">Theme</span>
+        </button>
+        <button class="sg-nav__btn" id="mode-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <span id="mode-label">Dark</span>
+        </button>
+        <button class="sg-nav__btn" id="lang-toggle-btn" aria-label="Switch language" title="Switch language">
+          <span id="lang-label">EN</span>
+        </button>
+        <button class="sg-nav__hamburger" id="hamburger-btn" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== THEME SWITCHER PANEL ===== -->
+  <div id="theme-panel" class="sg-theme-switcher" hidden>
+    <div class="sg-theme-switcher__title" data-i18n="theme.title">Select Theme</div>
+    <button class="sg-theme-option active" data-theme="kaze">
+      <span class="sg-theme-option__swatch" style="background: linear-gradient(135deg, #ffa8f7, #097dff);"></span>
+      <span class="sg-theme-option__name">KAZE</span>
+      <span class="sg-theme-option__label">風</span>
+    </button>
+    <button class="sg-theme-option" data-theme="kagami">
+      <span class="sg-theme-option__swatch" style="background: linear-gradient(135deg, #c0c0d0, #8a8aaa);"></span>
+      <span class="sg-theme-option__name">KAGAMI</span>
+      <span class="sg-theme-option__label">鏡</span>
+    </button>
+    <button class="sg-theme-option" data-theme="kurage">
+      <span class="sg-theme-option__swatch" style="background: linear-gradient(135deg, #00ffc8, #8b5cf6);"></span>
+      <span class="sg-theme-option__name">KURAGE</span>
+      <span class="sg-theme-option__label">海月</span>
+    </button>
+    <button class="sg-theme-option" data-theme="myaku">
+      <span class="sg-theme-option__swatch" style="background: linear-gradient(135deg, #c9a84c, #8b6914);"></span>
+      <span class="sg-theme-option__name">MYAKU</span>
+      <span class="sg-theme-option__label">脈</span>
+    </button>
+    <button class="sg-theme-option" data-theme="sumi">
+      <span class="sg-theme-option__swatch" style="background: linear-gradient(135deg, #ffffff, #333333);"></span>
+      <span class="sg-theme-option__name">SUMI</span>
+      <span class="sg-theme-option__label">墨</span>
+    </button>
+  </div>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="hero" class="sg-hero">
+    <canvas id="hero-bg" class="sg-hero__canvas" aria-hidden="true"></canvas>
+    <div class="sg-hero__content">
+      <div class="sg-hero__badges">
+        <span class="sg-badge sg-badge--blue">SkillGuard v2.3</span>
+        <span class="sg-badge sg-badge--red">Extreme Hardening</span>
+        <span class="sg-badge sg-badge--orange">Red-Team Verified</span>
+      </div>
+      <h1 class="sg-hero__title">
+        <span data-i18n="hero.title1">Three-Layer Runtime Defense</span><br>
+        <span class="sg-text-accent" data-i18n="hero.title2">for AI Agent Plugins</span>
+      </h1>
+      <p class="sg-hero__subtitle" data-i18n="hero.subtitle">
+        Protect your Claude Code, Cursor, and MCP environments from malicious third-party skills with cryptographic runtime validation.
+      </p>
+      <div class="sg-hero__actions">
+        <a href="#install" class="sg-btn sg-btn--primary" data-i18n="hero.cta1">Get Started</a>
+        <a href="https://github.com/NewTWCM/skillguard" target="_blank" rel="noopener" class="sg-btn sg-btn--ghost" data-i18n="hero.cta2">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THREE-LAYER DEFENSE ===== -->
+  <section id="defense" class="sg-section">
+    <div class="sg-container">
+      <div class="sg-section__header sg-animate-on-scroll">
+        <span class="sg-section__label" data-i18n="defense.label">Architecture</span>
+        <h2 class="sg-section__title" data-i18n="defense.title">Multi-Link Defense Architecture</h2>
+        <p class="sg-section__desc" data-i18n="defense.desc">Three deterministic layers form a zero-trust runtime environment that no malicious plugin can bypass.</p>
+      </div>
+
+      <div class="sg-layers sg-animate-on-scroll">
+        <!-- Layer 3 -->
+        <div class="sg-layer">
+          <div class="sg-layer__card sg-glass-card">
+            <span class="sg-layer__number">3</span>
+            <h3 class="sg-layer__title" data-i18n="defense.l3.title">Environment & Integrity</h3>
+            <p class="sg-layer__desc" data-i18n="defense.l3.desc">PATH sanitization, absolute path locking for security tools, and multi-link SHA256 cryptographic sealing to prevent tampering.</p>
+            <span class="sg-layer__tag">Absolute Path Control</span>
+          </div>
+        </div>
+        <!-- Layer 2 -->
+        <div class="sg-layer">
+          <div class="sg-layer__card sg-glass-card">
+            <span class="sg-layer__number">2</span>
+            <h3 class="sg-layer__title" data-i18n="defense.l2.title">Advanced Behavioral Scan</h3>
+            <p class="sg-layer__desc" data-i18n="defense.l2.desc">Multi-vector engine detecting time-bombs, environment hijacking (PYTHONPATH, LD_PRELOAD), and out-of-band variable injection.</p>
+            <span class="sg-layer__tag">15-Vector Scan</span>
+          </div>
+        </div>
+        <!-- Layer 1 -->
+        <div class="sg-layer">
+          <div class="sg-layer__card sg-glass-card">
+            <span class="sg-layer__number">1</span>
+            <h3 class="sg-layer__title" data-i18n="defense.l1.title">Honeypot Decoys</h3>
+            <p class="sg-layer__desc" data-i18n="defense.l1.desc">Immutable sentinel files deployed at known malware write targets. Any modification triggers an immediate alert.</p>
+            <span class="sg-layer__tag">Proactive Detection</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="sg-text-center sg-mt-8 sg-text-muted sg-animate-on-scroll" data-i18n="defense.footer">Zero-Trust Runtime — cryptographic, not semantic.</p>
+    </div>
+  </section>
+
+  <!-- ===== THREAT INTELLIGENCE ===== -->
+  <section id="threats" class="sg-section sg-section--alt">
+    <div class="sg-container">
+      <div class="sg-section__header sg-animate-on-scroll">
+        <span class="sg-section__label" data-i18n="threats.label">Threat Intelligence</span>
+        <h2 class="sg-section__title" data-i18n="threats.title">Why SkillGuard?</h2>
+        <p class="sg-section__desc" data-i18n="threats.desc">Real-world incidents that drove our three-layer defense design.</p>
+      </div>
+
+      <div class="sg-grid sg-grid--2 sg-animate-on-scroll">
+        <!-- Case 1 -->
+        <div class="sg-glass-card sg-glass-card--glow">
+          <div class="sg-threat-card__icon">&#x1F6A8;</div>
+          <h3 class="sg-threat-card__title" data-i18n="threats.case1.title">The gstack Telemetry Backdoor</h3>
+          <p class="sg-threat-card__body" data-i18n="threats.case1.body">
+            In early 2026, a popular Claude Code skill named <span class="sg-threat-card__highlight">gstack</span> was found silently exfiltrating user insights and business data. SkillGuard detected this bypass using Layer 1 (Honeypot) and Layer 2 (Behavioral Scan).
+          </p>
+        </div>
+        <!-- Case 2 -->
+        <div class="sg-glass-card sg-glass-card--glow">
+          <div class="sg-threat-card__icon">&#x1F6E1;&#xFE0F;</div>
+          <h3 class="sg-threat-card__title" data-i18n="threats.case2.title">Tool & Environment Hijacking</h3>
+          <p class="sg-threat-card__body" data-i18n="threats.case2.body">
+            Advanced attackers attempt to override system binaries like <span class="sg-threat-card__highlight">shasum</span> or <span class="sg-threat-card__highlight">grep</span>. SkillGuard v2.3 uses Absolute Path Locking and $PATH sanity checks to ensure security tools remain untampered.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INSTALLATION GUIDE ===== -->
+  <section id="install" class="sg-section">
+    <div class="sg-container">
+      <div class="sg-section__header sg-animate-on-scroll">
+        <span class="sg-section__label" data-i18n="install.label">Quick Start</span>
+        <h2 class="sg-section__title" data-i18n="install.title">Get Protected in 3 Steps</h2>
+      </div>
+
+      <div class="sg-steps">
+        <!-- Step 1 -->
+        <div class="sg-step sg-animate-on-scroll">
+          <div class="sg-step__number">1</div>
+          <div class="sg-step__content">
+            <h3 class="sg-step__title" data-i18n="install.s1.title">Install & Seal</h3>
+            <p class="sg-step__desc" data-i18n="install.s1.desc">Deploy honeypots and compute the Layer 3 checksum to prevent tampering.</p>
+            <div class="sg-terminal">
+              <div class="sg-terminal__header">
+                <div class="sg-terminal__dots">
+                  <span class="sg-terminal__dot sg-terminal__dot--red"></span>
+                  <span class="sg-terminal__dot sg-terminal__dot--yellow"></span>
+                  <span class="sg-terminal__dot sg-terminal__dot--green"></span>
+                </div>
+                <span class="sg-terminal__title">terminal</span>
+                <button class="sg-terminal__copy" data-copy="chmod +x skillguard.sh&#10;./skillguard.sh install" data-i18n-attr="data-copied:install.copied">Copy</button>
+              </div>
+              <div class="sg-terminal__body">
+                <div class="sg-terminal__line"><span class="sg-terminal__prompt">$ </span><span class="sg-terminal__command">chmod +x skillguard.sh</span></div>
+                <div class="sg-terminal__line"><span class="sg-terminal__prompt">$ </span><span class="sg-terminal__command">./skillguard.sh install</span></div>
+                <div class="sg-terminal__line"><span class="sg-terminal__output">[L3] v2.3 Multi-Link Seal Applied.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="sg-step sg-animate-on-scroll">
+          <div class="sg-step__number">2</div>
+          <div class="sg-step__content">
+            <h3 class="sg-step__title" data-i18n="install.s2.title">Full Security Scan</h3>
+            <p class="sg-step__desc" data-i18n="install.s2.desc">Run on any plugin or skill directory before use.</p>
+            <div class="sg-terminal">
+              <div class="sg-terminal__header">
+                <div class="sg-terminal__dots">
+                  <span class="sg-terminal__dot sg-terminal__dot--red"></span>
+                  <span class="sg-terminal__dot sg-terminal__dot--yellow"></span>
+                  <span class="sg-terminal__dot sg-terminal__dot--green"></span>
+                </div>
+                <span class="sg-terminal__title">terminal</span>
+                <button class="sg-terminal__copy" data-copy="./skillguard.sh scan /path/to/suspicious-skill">Copy</button>
+              </div>
+              <div class="sg-terminal__body">
+                <div class="sg-terminal__line"><span class="sg-terminal__prompt">$ </span><span class="sg-terminal__command">./skillguard.sh scan /path/to/suspicious-skill</span></div>
+                <div class="sg-terminal__line"><span class="sg-terminal__output">V11 (Time-Bombs):   0 hits</span></div>
+                <div class="sg-terminal__line"><span class="sg-terminal__output">V12 (Env-Hijack):   0 hits</span></div>
+                <div class="sg-terminal__line"><span class="sg-terminal__output">V15 (OOB Inject):   0 hits (CRITICAL)</span></div>
+                <div class="sg-terminal__line"><span class="sg-terminal__output" style="color: var(--sg-success);">[&#x2714;] v2.3 Scan complete. Security posture: EXTREME.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="sg-step sg-animate-on-scroll">
+          <div class="sg-step__number">3</div>
+          <div class="sg-step__content">
+            <h3 class="sg-step__title" data-i18n="install.s3.title">Routine Check</h3>
+            <p class="sg-step__desc" data-i18n="install.s3.desc">Check honeypot integrity and self-integrity regularly.</p>
+            <div class="sg-terminal">
+              <div class="sg-terminal__header">
+                <div class="sg-terminal__dots">
+                  <span class="sg-terminal__dot sg-terminal__dot--red"></span>
+                  <span class="sg-terminal__dot sg-terminal__dot--yellow"></span>
+                  <span class="sg-terminal__dot sg-terminal__dot--green"></span>
+                </div>
+                <span class="sg-terminal__title">terminal</span>
+                <button class="sg-terminal__copy" data-copy="./skillguard.sh check">Copy</button>
+              </div>
+              <div class="sg-terminal__body">
+                <div class="sg-terminal__line"><span class="sg-terminal__prompt">$ </span><span class="sg-terminal__command">./skillguard.sh check</span></div>
+                <div class="sg-terminal__line"><span class="sg-terminal__output" style="color: var(--sg-success);">System and PATH Integrity: SECURE.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESEARCH & CITATION ===== -->
+  <section id="research" class="sg-section sg-section--alt">
+    <div class="sg-container">
+      <div class="sg-section__header sg-animate-on-scroll">
+        <span class="sg-section__label" data-i18n="research.label">Publication</span>
+        <h2 class="sg-section__title" data-i18n="research.title">Research & Citation</h2>
+      </div>
+
+      <div class="sg-grid sg-grid--2 sg-animate-on-scroll">
+        <div class="sg-glass-card">
+          <h3 class="sg-threat-card__title" data-i18n="research.abstract.title">Abstract</h3>
+          <p class="sg-threat-card__body" data-i18n="research.abstract.body">
+            The rapid evolution of LLM-based agentic ecosystems has introduced a critical attack surface: third-party plugins that execute with elevated privileges. We present SkillGuard, a lightweight, three-layer runtime defense system. Our evaluation demonstrates high detection rates with minimal performance overhead (&lt;1s).
+          </p>
+          <div class="sg-tags sg-mt-4">
+            <span class="sg-tag">AI Agent Security</span>
+            <span class="sg-tag">LLM Plugins</span>
+            <span class="sg-tag">MCP Servers</span>
+            <span class="sg-tag">Runtime Defense</span>
+            <span class="sg-tag">Honeypots</span>
+            <span class="sg-tag">Supply Chain</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="sg-terminal">
+            <div class="sg-terminal__header">
+              <div class="sg-terminal__dots">
+                <span class="sg-terminal__dot sg-terminal__dot--red"></span>
+                <span class="sg-terminal__dot sg-terminal__dot--yellow"></span>
+                <span class="sg-terminal__dot sg-terminal__dot--green"></span>
+              </div>
+              <span class="sg-terminal__title">citation.bib</span>
+              <button class="sg-terminal__copy" data-copy="@misc{skillguard2026,&#10;  title={SkillGuard: Three-Layer Runtime Defense Against Malicious AI Agent Plugins},&#10;  author={CM Fang (NewTWCM)},&#10;  year={2026}&#10;}">Copy</button>
+            </div>
+            <div class="sg-terminal__body">
+              <div class="sg-terminal__line"><span class="sg-terminal__command">@misc</span>{skillguard2026,</div>
+              <div class="sg-terminal__line">  title={SkillGuard: Three-Layer Runtime</div>
+              <div class="sg-terminal__line">    Defense Against Malicious AI</div>
+              <div class="sg-terminal__line">    Agent Plugins},</div>
+              <div class="sg-terminal__line">  author={CM Fang (NewTWCM)},</div>
+              <div class="sg-terminal__line">  year={2026}</div>
+              <div class="sg-terminal__line">}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SUPPORT ===== -->
+  <section id="support" class="sg-section">
+    <div class="sg-container">
+      <div class="sg-section__header sg-animate-on-scroll">
+        <span class="sg-section__label" data-i18n="support.label">Open Source</span>
+        <h2 class="sg-section__title" data-i18n="support.title">Support This Research</h2>
+        <p class="sg-section__desc" data-i18n="support.desc">If SkillGuard has helped secure your AI environment, consider supporting further development.</p>
+      </div>
+
+      <div class="sg-grid sg-grid--2 sg-animate-on-scroll">
+        <div class="sg-glass-card sg-sponsor-card">
+          <div class="sg-sponsor-card__icon">&#x1F496;</div>
+          <h3 class="sg-sponsor-card__title">GitHub Sponsors</h3>
+          <p class="sg-sponsor-card__desc" data-i18n="support.gh.desc">The recommended way to support ongoing security research and development.</p>
+          <a href="https://github.com/sponsors/NewTWCM" target="_blank" rel="noopener" class="sg-btn sg-btn--primary" data-i18n="support.gh.btn">Sponsor on GitHub</a>
+        </div>
+        <div class="sg-glass-card sg-sponsor-card">
+          <div class="sg-sponsor-card__icon">&#x2615;</div>
+          <h3 class="sg-sponsor-card__title">Buy Me a Coffee</h3>
+          <p class="sg-sponsor-card__desc" data-i18n="support.bmc.desc">A quick way to show appreciation for the project.</p>
+          <a href="https://www.buymeacoffee.com/NewTWCM" target="_blank" rel="noopener" class="sg-btn sg-btn--ghost" data-i18n="support.bmc.btn">Buy a Coffee</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="sg-footer">
+    <div class="sg-container">
+      <p>
+        MIT License &copy; 2026 <a href="https://github.com/NewTWCM" target="_blank" rel="noopener">CM Fang (NewTWCM)</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://github.com/NewTWCM/skillguard" target="_blank" rel="noopener">GitHub</a>
+        &nbsp;&middot;&nbsp;
+        <span data-i18n="footer.built">Built with purpose.</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="./js/main.js"></script>
+  <script src="./js/animations.js"></script>
+  <script src="./js/i18n.js"></script>
+</body>
+</html>
