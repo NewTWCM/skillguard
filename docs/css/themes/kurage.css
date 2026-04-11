@@ -1,0 +1,165 @@
+/* ==========================================================================
+   KURAGE (海月 / Jellyfish) — Bioluminescent Theme
+   Deep ocean blues, organic translucent panels, pulsing teal-violet glow
+   ========================================================================== */
+
+/* --- Dark Mode --- */
+html[data-theme="kurage"],
+html[data-theme="kurage"][data-mode="dark"] {
+  --sg-bg-primary: #0a0f2e;
+  --sg-bg-secondary: #0e1438;
+  --sg-surface: rgba(0, 255, 200, 0.04);
+  --sg-surface-hover: rgba(0, 255, 200, 0.08);
+
+  --sg-glass-blur: 18px;
+  --sg-glass-border: rgba(0, 255, 200, 0.1);
+  --sg-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  --sg-accent-1: #00ffc8;
+  --sg-accent-2: #8b5cf6;
+  --sg-accent-gradient: linear-gradient(135deg, #00ffc8, #0ea5e9, #8b5cf6);
+
+  --sg-text-primary: #e0f5f0;
+  --sg-text-secondary: #80b8b0;
+  --sg-text-muted: #507070;
+  --sg-border: rgba(0, 255, 200, 0.06);
+
+  --sg-glow-color: rgba(0, 255, 200, 0.3);
+  --sg-glow-intensity: 0 0 15px rgba(0, 255, 200, 0.25), 0 0 45px rgba(139, 92, 246, 0.1);
+
+  --sg-success: #00ffc8;
+  --sg-danger: #ff5577;
+  --sg-warning: #ffcc44;
+}
+
+/* --- Light Mode --- */
+html[data-theme="kurage"][data-mode="light"] {
+  --sg-bg-primary: #f0fffe;
+  --sg-bg-secondary: #e5faf8;
+  --sg-surface: rgba(255, 255, 255, 0.7);
+  --sg-surface-hover: rgba(255, 255, 255, 0.85);
+
+  --sg-glass-blur: 12px;
+  --sg-glass-border: rgba(0, 180, 150, 0.12);
+  --sg-glass-shadow: 0 4px 20px rgba(0, 180, 150, 0.06);
+
+  --sg-accent-1: #059669;
+  --sg-accent-2: #7c3aed;
+  --sg-accent-gradient: linear-gradient(135deg, #059669, #0284c7, #7c3aed);
+
+  --sg-text-primary: #0a1a18;
+  --sg-text-secondary: #3a6060;
+  --sg-text-muted: #6a9090;
+  --sg-border: rgba(0, 0, 0, 0.06);
+
+  --sg-glow-color: rgba(5, 150, 105, 0.15);
+  --sg-glow-intensity: 0 0 10px rgba(5, 150, 105, 0.1);
+
+  --sg-success: #059669;
+  --sg-danger: #dc2626;
+  --sg-warning: #d97706;
+}
+
+/* --- KURAGE: Nav --- */
+html[data-theme="kurage"] .sg-nav {
+  background: rgba(10, 15, 46, 0.75);
+}
+
+html[data-theme="kurage"][data-mode="light"] .sg-nav {
+  background: rgba(240, 255, 254, 0.75);
+}
+
+/* --- KURAGE: Breathing cards --- */
+html[data-theme="kurage"] .sg-glass-card {
+  border-radius: 20px;
+}
+
+html[data-theme="kurage"] .sg-glass-card:hover {
+  animation: sg-breathe 4s ease-in-out infinite;
+  box-shadow:
+    0 0 15px rgba(0, 255, 200, 0.2),
+    0 0 40px rgba(0, 255, 200, 0.08),
+    var(--sg-glass-shadow);
+}
+
+/* --- KURAGE: Pulsing gradient border --- */
+html[data-theme="kurage"] .sg-glass-card--glow::before {
+  background: linear-gradient(var(--sg-angle, 135deg), #00ffc8, #0ea5e9, #8b5cf6);
+  animation: sg-rotate-gradient 12s linear infinite;
+}
+
+html[data-theme="kurage"] .sg-glass-card--glow {
+  animation: sg-bio-pulse 4s ease-in-out infinite;
+}
+
+/* --- KURAGE: Hero background (CSS fallback) --- */
+html[data-theme="kurage"] .sg-hero::before,
+html[data-theme="kurage"] .sg-hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+html[data-theme="kurage"] .sg-hero::before {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 255, 200, 0.15), transparent 70%);
+  top: 20%;
+  left: 20%;
+  animation: sg-jellyfish-float 6s ease-in-out infinite;
+}
+
+html[data-theme="kurage"] .sg-hero::after {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12), transparent 70%);
+  bottom: 15%;
+  right: 15%;
+  animation: sg-jellyfish-float 8s ease-in-out infinite reverse;
+}
+
+html[data-theme="kurage"][data-mode="light"] .sg-hero::before {
+  background: radial-gradient(circle, rgba(5, 150, 105, 0.1), transparent 70%);
+}
+
+html[data-theme="kurage"][data-mode="light"] .sg-hero::after {
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.08), transparent 70%);
+}
+
+/* --- KURAGE: Layer diagram connector --- */
+html[data-theme="kurage"] .sg-layers::before {
+  background: linear-gradient(to bottom, #00ffc8, #8b5cf6);
+}
+
+/* --- KURAGE: Terminal --- */
+html[data-theme="kurage"] .sg-terminal {
+  background: rgba(5, 8, 25, 0.8);
+  border-color: rgba(0, 255, 200, 0.08);
+}
+
+/* --- KURAGE: Scrollbar --- */
+html[data-theme="kurage"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 200, 0.15);
+}
+
+html[data-theme="kurage"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 200, 0.3);
+}
+
+/* --- KURAGE: Selection --- */
+html[data-theme="kurage"] ::selection {
+  background: #00ffc8;
+  color: #0a0f2e;
+}
+
+/* --- KURAGE: Theme switcher --- */
+html[data-theme="kurage"] .sg-theme-switcher {
+  background: rgba(14, 20, 56, 0.95);
+}
+
+html[data-theme="kurage"][data-mode="light"] .sg-theme-switcher {
+  background: rgba(240, 255, 254, 0.95);
+}

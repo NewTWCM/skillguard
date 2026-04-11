@@ -1,0 +1,149 @@
+/* ==========================================================================
+   KAZE (風 / Wind) — Default Theme
+   Aurora glass + pink-blue neon glow edges
+   Futuristic glass/acrylic with gradient fluorescent edge glow
+   ========================================================================== */
+
+/* --- Dark Mode (Default) --- */
+html[data-theme="kaze"],
+html[data-theme="kaze"][data-mode="dark"] {
+  --sg-bg-primary: #0a0a1a;
+  --sg-bg-secondary: #0d0d24;
+  --sg-surface: rgba(255, 255, 255, 0.06);
+  --sg-surface-hover: rgba(255, 255, 255, 0.1);
+
+  --sg-glass-blur: 16px;
+  --sg-glass-border: rgba(255, 255, 255, 0.12);
+  --sg-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  --sg-accent-1: #ffa8f7;
+  --sg-accent-2: #097dff;
+  --sg-accent-gradient: linear-gradient(135deg, #ffa8f7, #cb80ff, #097dff);
+
+  --sg-text-primary: #f0f0f5;
+  --sg-text-secondary: #a0a0b8;
+  --sg-text-muted: #6b6b80;
+  --sg-border: rgba(255, 255, 255, 0.08);
+
+  --sg-glow-color: rgba(255, 168, 247, 0.35);
+  --sg-glow-intensity: 0 0 20px rgba(255, 168, 247, 0.25), 0 0 60px rgba(9, 125, 255, 0.1);
+
+  --sg-success: #05ffa1;
+  --sg-danger: #ff4466;
+  --sg-warning: #ffbb33;
+}
+
+/* --- Light Mode --- */
+html[data-theme="kaze"][data-mode="light"] {
+  --sg-bg-primary: #f5f2ff;
+  --sg-bg-secondary: #ece8ff;
+  --sg-surface: rgba(255, 255, 255, 0.7);
+  --sg-surface-hover: rgba(255, 255, 255, 0.85);
+
+  --sg-glass-blur: 12px;
+  --sg-glass-border: rgba(168, 85, 247, 0.15);
+  --sg-glass-shadow: 0 8px 32px rgba(168, 85, 247, 0.08);
+
+  --sg-accent-1: #c060e0;
+  --sg-accent-2: #0066dd;
+  --sg-accent-gradient: linear-gradient(135deg, #c060e0, #7c3aed, #0066dd);
+
+  --sg-text-primary: #1a1a2e;
+  --sg-text-secondary: #555568;
+  --sg-text-muted: #8888a0;
+  --sg-border: rgba(0, 0, 0, 0.08);
+
+  --sg-glow-color: rgba(124, 58, 237, 0.2);
+  --sg-glow-intensity: 0 0 16px rgba(124, 58, 237, 0.15), 0 0 40px rgba(0, 102, 221, 0.06);
+
+  --sg-success: #059669;
+  --sg-danger: #dc2626;
+  --sg-warning: #d97706;
+}
+
+/* --- KAZE-specific: Nav background adapts --- */
+html[data-theme="kaze"] .sg-nav {
+  background: rgba(10, 10, 26, 0.7);
+}
+
+html[data-theme="kaze"][data-mode="light"] .sg-nav {
+  background: rgba(245, 242, 255, 0.7);
+}
+
+/* --- KAZE-specific: Animated gradient border on glow cards --- */
+html[data-theme="kaze"] .sg-glass-card--glow::before {
+  background: linear-gradient(var(--sg-angle, 135deg), #ffa8f7, #cb80ff, #097dff);
+  animation: sg-rotate-gradient 8s linear infinite;
+}
+
+/* --- KAZE-specific: Aurora orbs in hero background (CSS fallback) --- */
+html[data-theme="kaze"] .sg-hero::before,
+html[data-theme="kaze"] .sg-hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+html[data-theme="kaze"] .sg-hero::before {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 168, 247, 0.25), transparent 70%);
+  top: 10%;
+  left: 15%;
+  animation: sg-aurora-drift 15s ease-in-out infinite;
+}
+
+html[data-theme="kaze"] .sg-hero::after {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(9, 125, 255, 0.25), transparent 70%);
+  bottom: 20%;
+  right: 10%;
+  animation: sg-aurora-drift 18s ease-in-out infinite reverse;
+}
+
+html[data-theme="kaze"][data-mode="light"] .sg-hero::before {
+  background: radial-gradient(circle, rgba(192, 96, 224, 0.15), transparent 70%);
+}
+
+html[data-theme="kaze"][data-mode="light"] .sg-hero::after {
+  background: radial-gradient(circle, rgba(0, 102, 221, 0.12), transparent 70%);
+}
+
+/* --- KAZE: Terminal styling --- */
+html[data-theme="kaze"] .sg-terminal {
+  background: rgba(10, 10, 30, 0.7);
+  border-color: rgba(255, 168, 247, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="kaze"][data-mode="light"] .sg-terminal {
+  background: rgba(20, 20, 40, 0.85);
+}
+
+/* --- KAZE: Theme switcher panel background --- */
+html[data-theme="kaze"] .sg-theme-switcher {
+  background: rgba(13, 13, 36, 0.95);
+}
+
+html[data-theme="kaze"][data-mode="light"] .sg-theme-switcher {
+  background: rgba(245, 242, 255, 0.95);
+}
+
+/* --- KAZE: Selection color --- */
+html[data-theme="kaze"] ::selection {
+  background: #ffa8f7;
+  color: #0a0a1a;
+}
+
+/* --- KAZE: Scrollbar thumb --- */
+html[data-theme="kaze"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 168, 247, 0.2);
+}
+
+html[data-theme="kaze"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 168, 247, 0.4);
+}
