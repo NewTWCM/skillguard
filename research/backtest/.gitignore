@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+# 快取可選是否提交, 但完整 CSV 可能很大
+# data/finmind_*.csv
+# data/yahoo_*.csv
