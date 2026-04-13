@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "date": "2021-02-09",
+    "source_url": "https://newtalk.tw/news/view/2021-02-09/535427",
+    "prediction": "台股這波還沒漲到頂，流動性充裕，未來將有漲到20000點的可能性",
+    "direction": "bullish",
+    "target_value": 20000,
+    "actual_outcome": "TAIEX ~15,800 → 18,619 peak Jan 2022 → crashed to 12,629 Oct 2022. 20k not until Mar 2024.",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 2,
+    "date": "2021-03-31",
+    "source_url": "https://newtalk.tw/news/view/2021-03-31/556828",
+    "prediction": "台股絕對是泡沫股市，要跑得快",
+    "direction": "bearish",
+    "target_value": null,
+    "actual_outcome": "~16,500 → 18,619 (+13%) 10 months later before correcting",
+    "reverse_result": "mixed_short_term_fade_worked"
+  },
+  {
+    "id": 3,
+    "date": "2021-05-04",
+    "source_url": "https://newtalk.tw/news/view/2021-05-04/570063",
+    "prediction": "台股進入泡沫化，波動加大",
+    "direction": "bearish",
+    "target_value": null,
+    "actual_outcome": "~17,000 → 18,619 (+9%) → crashed -32% to 12,629",
+    "reverse_result": "mixed_short_term_fade_worked"
+  },
+  {
+    "id": 4,
+    "date": "2021-12-13",
+    "source_url": "https://technews.tw/2021/12/13/foam/",
+    "prediction": "年底挑戰18,000；2022年看到20,000點",
+    "direction": "bullish",
+    "target_value": 20000,
+    "actual_outcome": "Peaked 18,619 Jan 2022, crashed -32% to 12,629. Never hit 20k in 2022.",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 5,
+    "date": "2021-12-14",
+    "source_url": "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=35f773be-1370-4d66-9792-79e28c2e8559",
+    "prediction": "這一波台股指數高點就是2萬點",
+    "direction": "bullish",
+    "target_value": 20000,
+    "actual_outcome": "2022 crashed to 12,629; 20k not until Mar 2024",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 6,
+    "date": "2022-10-05",
+    "source_url": "https://wantrich.chinatimes.com/news/20221005900581-420101",
+    "prediction": "台股跌到萬二；S&P 500 恐跌至3,000",
+    "direction": "bearish",
+    "target_value": 12000,
+    "actual_outcome": "TAIEX bottomed 12,629 on 2022-10-25 (within 3 weeks), then major bull run",
+    "reverse_result": "wrong_contrarian_near_bottom"
+  },
+  {
+    "id": 7,
+    "date": "2023-01-11",
+    "source_url": "https://news.cnyes.com/news/id/5060413",
+    "prediction": "台股恐跌破12000，不排除下探萬一",
+    "direction": "bearish",
+    "target_value": 11000,
+    "actual_outcome": "~14,800 → 17,500+ by July 2023. Never revisited 12k.",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 8,
+    "date": "2023-04-24",
+    "source_url": "https://finance.technews.tw/2023/04/24/qic/",
+    "prediction": "台股有機會跌破12,629低點",
+    "direction": "bearish",
+    "target_value": 12629,
+    "actual_outcome": "~15,600 → 17,463 July 2023. Never broke 12,629.",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 9,
+    "date": "2023-04-25",
+    "source_url": "https://wantrich.chinatimes.com/news/20230425900024-420101",
+    "prediction": "未來可能跌破12,629點",
+    "direction": "bearish",
+    "target_value": 12629,
+    "actual_outcome": "Never broke 12,629; rallied to 17,000+",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 10,
+    "date": "2023-10-23",
+    "source_url": "https://news.cnyes.com/news/id/5353430",
+    "prediction": "台股面臨修正壓力，投資風險偏高",
+    "direction": "bearish",
+    "target_value": null,
+    "actual_outcome": "~16,200 → 17,500 within weeks → 18,900 year-end. UDN noted 'rose 1,300 points after warning'",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 11,
+    "date": "2023-12-29",
+    "source_url": "https://vocus.cc/article/6596564cfd89780001b20461",
+    "prediction": "萬八只是前菜？四大利多在後頭",
+    "direction": "bullish",
+    "target_value": null,
+    "actual_outcome": "~17,900 → 24,390 July 2024 (+36%). Bullish call worked.",
+    "reverse_result": "wrong_contrarian_he_was_right"
+  },
+  {
+    "id": 12,
+    "date": "2024-01-22",
+    "source_url": "https://news.cnyes.com/news/id/5435159",
+    "prediction": "台股攻堅2萬點有難度",
+    "direction": "bearish",
+    "target_value": 20000,
+    "actual_outcome": "Broke 20k Mar 2024, reached 24,390 July 2024",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 13,
+    "date": "2024-04-29",
+    "source_url": "https://www.ntdtv.com.tw/b5/20240429/video/389191.html",
+    "prediction": "AI再漲恐泡沫，下跌風險大；1-2 年跌大",
+    "direction": "bearish",
+    "target_value": null,
+    "actual_outcome": "~20,100 → 24,390 July 2024 → to 28,000+ by 2026",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 14,
+    "date": "2024-08-19",
+    "source_url": "https://www.businesstoday.com.tw/article/category/183008/post/202408190026/",
+    "prediction": "最壞情況已過去，台積電5-10年看不到對手",
+    "direction": "bullish",
+    "target_value": null,
+    "actual_outcome": "Recovered from Aug crash ~19,000 to 24,000+ by year-end",
+    "reverse_result": "wrong_contrarian_he_was_right"
+  },
+  {
+    "id": 15,
+    "date": "2024-10-21",
+    "source_url": "https://news.cnyes.com/news/id/5747668",
+    "prediction": "選後美股必漲",
+    "direction": "bullish",
+    "target_value": null,
+    "actual_outcome": "S&P 500 +4% Nov 2024, sold off Dec-Jan. TAIEX dropped to ~22,000 early 2025",
+    "reverse_result": "mixed"
+  },
+  {
+    "id": 16,
+    "date": "2025-08-20",
+    "source_url": "https://finance.ettoday.net/news/3018627",
+    "prediction": "年底前還有上漲空間",
+    "direction": "bullish",
+    "target_value": null,
+    "actual_outcome": "Same day dropped 355 points to 23,998; subsequent rally to 28,000+ by Oct 2025",
+    "reverse_result": "mixed"
+  },
+  {
+    "id": 17,
+    "date": "2025-09-18",
+    "source_url": "https://udn.com/news/story/12806/9011307",
+    "prediction": "FED降息股市就跌；AI泡沫如2000年",
+    "direction": "bearish",
+    "target_value": null,
+    "actual_outcome": "Rallied to 28,000+ Oct 2025, 31,000 Jan 2026. No AI bubble burst by early 2026.",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 18,
+    "date": "2025-10-26",
+    "source_url": "https://udn.com/news/story/12806/9097586",
+    "prediction": "漲越快越要考慮獲利了結；近28,000點示警",
+    "direction": "bearish",
+    "target_value": null,
+    "actual_outcome": "Rallied to 31,000 by Jan 2026. PTT mocked with '三萬穩了'.",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 19,
+    "date": "2025-11-06",
+    "source_url": "https://udn.com/news/story/12806/9119687",
+    "prediction": "市場已進入多頭尾巴",
+    "direction": "bearish",
+    "target_value": null,
+    "actual_outcome": "Rallied to 31,000 by Jan 2026",
+    "reverse_result": "correct_contrarian"
+  },
+  {
+    "id": 20,
+    "date": "2026-03-21",
+    "source_url": "https://finance.ettoday.net/news/3135952",
+    "prediction": "美股牛市年紀已經很大，現在開始轉弱了",
+    "direction": "bearish",
+    "target_value": null,
+    "actual_outcome": "Too recent (call date ~3 weeks ago as of 2026-04-13)",
+    "reverse_result": "pending"
+  }
+]
