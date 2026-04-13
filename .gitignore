@@ -2,3 +2,6 @@ roadmap_workflow.md
 ai_handoff.md
 high_school_promo.md
 .DS_Store
+
+# Runtime state (regenerated on each dashboard run)
+research/backtest/output/dashboard_state.json
