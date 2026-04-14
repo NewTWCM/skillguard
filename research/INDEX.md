@@ -35,6 +35,7 @@ skillguard/
 | R4 | [research/backtest/README.md](backtest/README.md) | 2026-04-13 | 回測包快速上手 | ✅ |
 | R5 | [research/backtest/RESULTS.md](backtest/RESULTS.md) | 2026-04-13 | 完整回測報告 (早期版) | ✅ |
 | R6 | [research/backtest/FINAL_REPORT.md](backtest/FINAL_REPORT.md) | 2026-04-13 | **最終整合報告** (實證 + 文獻 + 監控) | ✅ |
+| R7 | [research/backtest/NET_RESULTS.md](backtest/NET_RESULTS.md) | 2026-04-14 | **Net-of-cost 回測** (扣交易成本/滑價) | ✅ |
 
 ---
 
@@ -62,6 +63,13 @@ skillguard/
 |------|-----|------|
 | `monitoring_dashboard` | [research/backtest/monitoring_dashboard.py](backtest/monitoring_dashboard.py) | FNG + BTC + SPY 即時監控 + Telegram 推送 |
 
+### 成本 / 淨報酬
+
+| 模組 | 路徑 | 功能 |
+|------|-----|------|
+| `costs` | [research/backtest/costs.py](backtest/costs.py) | 可配置交易成本 + 滑價模組 (8 個預設 profile) |
+| `apply_costs_to_backtests` | [research/backtest/apply_costs_to_backtests.py](backtest/apply_costs_to_backtests.py) | 將成本套用至所有回測產出 Net-of-cost 報表 |
+
 ---
 
 ## 💾 原始資料快取 (Git-Tracked)
@@ -76,6 +84,7 @@ skillguard/
 | `data/finmind_TaiwanFuturesInstitutionalInvestors_TX_*.csv` | 台指期三大法人未平倉 | 2021-2026 | FinMind |
 | `data/finmind_TaiwanFuturesDaily_TX_*.csv` | 台指期日成交 | 2021-2026 | FinMind |
 | `data/peter_kurz_calls.json` | Peter Kurz 20 筆公開呼叫 (手動整理) | 2021-2026 | 新聞媒體交叉驗證 |
+| `data/cost_profiles.json` | 自訂成本 profile (自動產生) | — | `costs.py configure` 寫入 |
 
 ---
 
@@ -97,6 +106,9 @@ skillguard/
 
 ### Peter Kurz
 - `output/peter_kurz_backtest_detail.csv` — 20 筆呼叫多時間尺度報酬
+
+### Net-of-Cost
+- `output/net_of_cost_results.csv` — 所有策略 Gross vs Net 對照表
 
 ### 忽略 (runtime)
 - `output/dashboard_state.json` — 監控狀態 (gitignore)
@@ -165,7 +177,8 @@ skillguard/
 | `905682d` | 2026-04-13 | 5 年綜合回測 (Banini/散戶多空/FNG) |
 | `05e0904` | 2026-04-13 | 非對稱深度分析 + 監控儀表板 + 學術文獻 |
 | `2556d43` | 2026-04-13 | gitignore 動態狀態檔 |
-| `(next)` | 2026-04-14 | Master INDEX + 交易成本框架 |
+| `208876a` | 2026-04-14 | Master INDEX manifest (抗 context 壓縮) |
+| `(next)` | 2026-04-14 | 交易成本框架 + NET_RESULTS |
 
 ---
 
@@ -195,8 +208,8 @@ skillguard/
 ## 📋 下一步任務 (排序)
 
 1. ✅ 建立 INDEX.md (本檔)
-2. ⏳ 建立可配置交易成本 + 滑價 Python 模組 (`costs.py`)
-3. ⏳ 重跑所有回測帶入成本 → 產出 `NET_RESULTS.md`
+2. ✅ 建立可配置交易成本 + 滑價 Python 模組 (`costs.py`)
+3. ✅ 重跑所有回測帶入成本 → 產出 `NET_RESULTS.md`
 4. ⏳ 整合台股融資維持率 L2 信號 (FinMind 新 dataset)
 5. ⏳ 整合 VIX 美股強化信號
 6. ⏳ 整合 CBOE / TAIFEX Put/Call Ratio
